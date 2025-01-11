@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta NAME="viewport" content="width=device-width, initial-scale=1.0"
-    <title>Cargar Profesor</title>
-</head>
-<body>
-    <h1>Cargar Profesor</h1>
+    {% extends "AppCoder/index.html" %}
+    {% load  static %}
+
+    <title>
+        {% block titulo %}
+        Cargar Profesor
+        {% endblock %}
+    </title>
+
+    {% block cuerpo %}
+    <h1>Cargar Profesores</h1>
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Guardar</button>
         </form>
-        <a href=""{% url "index" %}> Inicio
-</body>
-</html>
+        <a href=""{% url "index" %}> class ="btn btn-primary"> Inicio
+    {% endblock %}
+

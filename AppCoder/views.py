@@ -5,6 +5,7 @@ from .forms import EstudianteForm, ProfesorForm, CursoForm
 from django.shortcuts import render, get_object_or_404
 
 from .models import Estudiante, Profesor, Curso
+from django.db.models import Q
 
 #----------------------------INDEX-------------------------------------------
 def index(request):
@@ -24,7 +25,7 @@ def cargar_estudiante(request):
 
 def lista_estudiantes(request):
     estudiantes = Estudiante.objects.all()
-    return render(request, "AppCoder/lista_estudiante.html", {"estudiantes": estudiantes})
+    return render(request, "AppCoder/lista_estudiantes.html", {"estudiantes": estudiantes})
 
 
 
@@ -36,6 +37,7 @@ def cargar_profesor(request):
         if form.is_valid():
             form.save()
             return redirect("lista_profesores")
+            
     else:
         form= ProfesorForm()
     return render(request, "AppCoder/profesor_form.html", {"form" : form})
@@ -60,3 +62,39 @@ def cargar_curso(request):
 def lista_cursos(request):
     curso = Curso.objects.all()
     return render(request, "AppCoder/lista_cursos.html", {"cursos": cursos})
+
+
+
+    #----------------------------BUSQUEDA-------------------------------------------
+
+def buscar(request):
+    query = request.GET.get('q', '')
+    resultados = []
+
+    if query:
+        estudiantes = Estudiante.objects.filter(
+            Q(nombre__icontains=query) | Q(apellido__icontains=query) | Q(email__icontains=query)
+        )
+        profesores = Profesor.objects.filter(
+            Q(nombre__icontains=query) | Q(apellido__icontains=query) | Q(email__icontains=query) | Q(profesion__icontains=query) | Q(direccion__icontains=query)
+        )
+
+        for estudiante in estudiantes:
+            resultados.append({
+                'tipo': 'Estudiante',
+                'nombre': estudiante.nombre,
+                'apellido': estudiante.apellido,
+                'email': estudiante.email,
+                'extra': '-',
+            })
+
+        for profesor in profesores:
+            resultados.append({
+                'tipo': 'Profesor',
+                'nombre': profesor.nombre,
+                'apellido': profesor.apellido,
+                'email': profesor.email,
+                'extra': f'{profesor.profesion} / {profesor.direccion}',
+            })
+
+    return render(request, 'AppCoder/index.html', {'resultados': resultados})

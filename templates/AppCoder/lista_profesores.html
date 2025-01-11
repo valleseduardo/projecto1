@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta NAME="viewport" content="width=device-width, initial-scale=1.0"
-    <title>Listar Profesores</title>
-</head>
-<body>
+
+{% extends "AppCoder/index.html" %}
+{% load  static %}
+
+<title>
+    {% block titulo %}
+        Lista de Profesores
+    {% endblock %}
+</title>
+
+{% block cuerpo %}
     <h1>Lista de Profesores</h1>
     <ul>
         {% for profesor in profesores%}
@@ -15,5 +18,4 @@
     </ul>
     <a href="{% url "cargar_profesor" %}">Agregar Profesor</a>
     <a href=""{% url "index" %}> Inicio
-</body>
-</html>
+{% endblock %}
