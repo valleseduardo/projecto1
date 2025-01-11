@@ -25,10 +25,3 @@ class Curso(models.Model):
     def __str__(self):
         return f"Nombre: {self.nombre} Camada: {self.camada}"
 
-class Entregable(models.Model):
-    nombre = models.CharField(max_length=100)
-    fecha_entrega = models.DateField()
-    entregado = models.BooleanField()
-
-    def __str__(self):
-        return self.nombre
