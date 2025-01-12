@@ -14,8 +14,8 @@
             <li>{{estudiante.nombre}} {{estudiante.apellido}}</li>
         {% endfor %}
     </ul>
-    <a href="{% url "cargar_estudiante" %}">Agregar Estudiante</a>
-    <a href=""{% url "index" %}> Inicio
+    <a href="{% url "cargar_estudiante" %}" class="btn btn-primary">Agregar Estudiante</a>
+    <a href="{% url "index" %}" class="btn btn-primary"> Inicio</a>
 {% endblock %}
 
 

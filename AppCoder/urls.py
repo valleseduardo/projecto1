@@ -11,6 +11,6 @@ urlpatterns = [
     path("profesores/", lista_profesores, name= "lista_profesores"),
     path("cursos/", lista_cursos, name= "lista_cursos"),
     path("cursos/", cargar_curso, name= "cargar_curso"),
-    path('buscar/', views.buscar, name='buscar'),
+    path('buscar/', buscar, name='buscar'),
 ]
 

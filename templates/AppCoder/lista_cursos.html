@@ -14,6 +14,7 @@
         <li>{{curso.nombre}} {{curso.camada}}</li>
     {% endfor %}
 </ul>
-<a href="{% url "cargar_curso" %}">Agregar Curso</a>
-<a href=""{% url "index" %}> Inicio
+<a href="{% url "cargar_curso" %}" class="btn btn-primary">Agregar Curso</a>
+<a href="{% url "index" %}" class="btn btn-primary"> Inicio</a>
 {% endblock %}
+

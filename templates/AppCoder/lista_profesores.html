@@ -16,6 +16,6 @@
             <li>{{profesor.email}} {{profesor.profesion}}</li>
         {% endfor %}
     </ul>
-    <a href="{% url "cargar_profesor" %}">Agregar Profesor</a>
-    <a href=""{% url "index" %}> Inicio
+    <a href="{% url "cargar_profesor" %}" class="btn btn-primary">Agregar Profesor</a>
+    <a href="{% url "index" %}" class="btn btn-primary"> Inicio</a>
 {% endblock %}
