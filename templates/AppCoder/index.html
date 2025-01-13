@@ -27,6 +27,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'lista_profesores' %}">Lista de Profesores</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cargar_curso' %}">Cargar Curso</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'lista_cursos' %}">Lista de Cursos</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -53,6 +59,16 @@
                         <p class="card-text">Agrega nuevos profesores o consulta la lista de profesores existentes.</p>
                         <a href="{% url 'cargar_profesor' %}" class="btn btn-primary">Cargar Profesor</a>
                         <a href="{% url 'lista_profesores' %}" class="btn btn-secondary">Ver Lista</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestión de Cursos</h5>
+                        <p class="card-text">Agrega nuevos cursos o consulta la lista de cursos existentes.</p>
+                        <a href="{% url 'cargar_curso' %}" class="btn btn-primary">Cargar Curso</a>
+                        <a href="{% url 'lista_cursos' %}" class="btn btn-secondary">Ver Lista</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +103,7 @@
                         <tr>
                             <td>{{ resultado.nombre }}</td>
                             <td>{{ resultado.apellido }}</td>
-                            {% comment %} <td>{{ resultado.email }}</td> {% endcomment %}
+                            <td>{{ resultado.email }}</td>
                             <td>
                                 {% if resultado.profesion %}
                                     Profesor
