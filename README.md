@@ -1,4 +1,2 @@
 # projecto1
-### hola 
-
-de nuevo por aca
+se crearon los modelos
