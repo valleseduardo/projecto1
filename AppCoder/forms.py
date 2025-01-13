@@ -8,12 +8,12 @@ class EstudianteForm(forms.ModelForm):
 
 
 class ProfesorForm(forms.ModelForm):
-    class meta:
+    class Meta:
         model=Profesor
         fields=["nombre", "apellido", "email", "profesion"]
 
 
 class CursoForm(forms.ModelForm):
-    class meta:
+    class Meta:
         model=Curso
         fields=["nombre", "camada"]
