@@ -61,7 +61,7 @@ def cargar_curso(request):
 
 def lista_cursos(request):
     curso = Curso.objects.all()
-    return render(request, "AppCoder/lista_cursos.html", {"cursos": cursos})
+    return render(request, "AppCoder/lista_cursos.html", {"cursos": curso})
 
 
 
@@ -76,7 +76,7 @@ def buscar(request):
             Q(nombre__icontains=query) | Q(apellido__icontains=query) | Q(email__icontains=query)
         )
         profesores = Profesor.objects.filter(
-            Q(nombre__icontains=query) | Q(apellido__icontains=query) | Q(email__icontains=query) | Q(profesion__icontains=query) | Q(direccion__icontains=query)
+            Q(nombre__icontains=query) | Q(apellido__icontains=query) | Q(email__icontains=query) | Q(profesion__icontains=query)
         )
 
         for estudiante in estudiantes:
@@ -94,7 +94,7 @@ def buscar(request):
                 'nombre': profesor.nombre,
                 'apellido': profesor.apellido,
                 'email': profesor.email,
-                'extra': f'{profesor.profesion} / {profesor.direccion}',
+                'extra': f'{profesor.profesion}',
             })
 
     return render(request, 'AppCoder/index.html', {'resultados': resultados})
