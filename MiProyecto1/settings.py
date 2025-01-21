@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'AppCoder',
+    'AppBlog',
+    'AppNuevo',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+LOGIN_URL = 'login/' # Redirigir al login si un usuario no est\'e1 autenticado\par
+LOGIN_REDIRECT_URL = '/'  # D\'f3nde se redirige tras el login\par
+LOGOUT_REDIRECT_URL = '/'  # D\'f3nde se redirige tras el logout\par

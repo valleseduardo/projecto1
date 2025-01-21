@@ -33,6 +33,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'lista_cursos' %}">Lista de Cursos</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-success" href="{% url 'post_list' %}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="{% url 'autor_list' %}">Autor</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-link nav-link" style="border: none; padding: 0;">Cerrar Sesion</button>
+                                </form>
+                    
+                        {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a>
+                                </li>
+                        {% endif %}
+                
                 </ul>
             </div>
         </div>

@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 from .views import cargar_estudiante, lista_estudiantes, cargar_profesor, lista_profesores, index, buscar
 from . import views
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path("", index, name="index"),
@@ -12,5 +13,7 @@ urlpatterns = [
      path("cargar_curso/", cargar_curso, name= "cargar_curso"),
     path("cursos/", lista_cursos, name= "lista_cursos"),
     path('buscar/', buscar, name='buscar'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
 
