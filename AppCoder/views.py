@@ -7,6 +7,9 @@ from django.shortcuts import render, get_object_or_404
 from .models import Estudiante, Profesor, Curso
 from django.db.models import Q
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 #----------------------------INDEX-------------------------------------------
 def index(request):
     return render(request, "AppCoder/index.html")
@@ -98,3 +101,18 @@ def buscar(request):
             })
 
     return render(request, 'AppCoder/index.html', {'resultados': resultados})
+
+
+
+ #----------------------------REGISTRO DE USUARIOS-------------------------------------------
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Usuario creado exitosamente. ¡Ahora puedes iniciar sesión!')
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'AppCoder/register.html', {'form': form})
