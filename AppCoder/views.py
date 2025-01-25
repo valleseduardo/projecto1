@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import EstudianteForm, ProfesorForm, CursoForm
+from .forms import *
 
 # Create your views here.
 from django.shortcuts import render, get_object_or_404
@@ -116,3 +116,36 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'AppCoder/register.html', {'form': form})
+
+
+
+ #----------------------------EDICION DE USUARIOS-------------------------------------------
+
+
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST, instance=usuario)
+        if profile_form.is_valid():
+            informacion= profile_form.cleaned_data
+
+            usuario.email= informacion["email"]
+            usuario.first_name= informacion["first_name"]
+            usuario.last_name= informacion["last_name"]
+
+            if informacion.get("password1") and informacion["password1"]== informacion["password2"]:
+                usuario.set_password(informacion["password1"])
+
+            usuario.save()
+
+            messages.success(request, 'Perfil actualizado correctamente.')
+            return redirect('index')
+    else:
+        user_form = UserEditForm(instance=usuario)
+
+    return render(request, "AppCoder/editarPerfil.html", {
+        "user_form": user_form,
+        "usuario": usuario
+    })

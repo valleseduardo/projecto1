@@ -40,6 +40,7 @@
                         <a class="nav-link text-danger" href="{% url 'autor_list' %}">Autor</a>
                         </li>
                         {% if user.is_authenticated %}
+                                <a class="nav-link" href="{% url 'editarperfil' %}">Editar Perfil</a>
                                 <form method="post" action="{% url 'logout' %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-link nav-link" style="border: none; padding: 0;">Cerrar Sesion</button>

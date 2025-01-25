@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-from .views import cargar_estudiante, lista_estudiantes, cargar_profesor, lista_profesores, index, buscar, register
+from .views import cargar_estudiante, lista_estudiantes, cargar_profesor, lista_profesores, index, buscar, register, editarPerfil
 from . import views
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -17,5 +17,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('login/', LoginView.as_view(template_name='AppCoder/login.html'), name='login'),
     path('register/', register, name='register'),
+    path('editarperfil/', editarPerfil, name='editarperfil'),
 ]
 
