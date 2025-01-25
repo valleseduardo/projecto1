@@ -39,6 +39,8 @@
                     <li class="nav-item">
                         <a class="nav-link text-danger" href="{% url 'autor_list' %}">Autor</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about_me' %}">About Me</a>  </li>
                         {% if user.is_authenticated %}
                                 <li class="nav-item">
                                     <img src="{{ user.profile.avatar.url|default:"/media/avatars/1.png" }}" 

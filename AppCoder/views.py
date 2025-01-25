@@ -4,7 +4,7 @@ from .forms import *
 # Create your views here.
 from django.shortcuts import render, get_object_or_404
 
-from .models import Estudiante, Profesor, Curso
+from .models import Estudiante, Profesor, Curso, AboutMe
 from django.db.models import Q
 
 from django.contrib.auth.decorators import login_required
@@ -186,10 +186,13 @@ def editarPerfil(request):
 
 
 
+ #----------------------------ABOUT ME-------------------------------------------
 
 
 
-
+def about_me(request):
+    about_me = AboutMe.objects.first()
+    return render(request, 'AppCoder/about_me.html', {'about_me': about_me})
 
 
 

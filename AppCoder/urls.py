@@ -18,5 +18,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='AppCoder/login.html'), name='login'),
     path('register/', register, name='register'),
     path('editarperfil/', editarPerfil, name='editarperfil'),
+    path('about_me/', about_me, name='about_me'),
 ]
 

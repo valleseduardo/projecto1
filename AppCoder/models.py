@@ -35,3 +35,6 @@ class Profile(models.Model):
         return f"Perfil de {self.user.username}"
 
 
+class AboutMe(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
