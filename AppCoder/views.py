@@ -10,6 +10,10 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+
+from .forms import UserEditForm, ProfileEditForm
+
+
 #----------------------------INDEX-------------------------------------------
 def index(request):
     return render(request, "AppCoder/index.html")
@@ -149,3 +153,43 @@ def editarPerfil(request):
         "user_form": user_form,
         "usuario": usuario
     })
+
+
+
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+    try:
+        perfil = usuario.profile
+    except Profile.DoesNotExist:
+        perfil = Profile.objects.create(user=usuario)
+
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST, instance=usuario)
+        profile_form = ProfileEditForm(request.POST, request.FILES, instance=perfil)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Perfil actualizado correctamente.')
+            return redirect('index')
+    else:
+        user_form = UserEditForm(instance=usuario)
+        profile_form = ProfileEditForm(instance=perfil)
+
+    return render(request, "AppCoder/editarPerfil.html", {
+        "user_form": user_form,
+        "profile_form": profile_form,
+        "usuario": usuario
+    })
+
+
+
+
+
+
+
+
+
+
+
